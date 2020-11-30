@@ -190,7 +190,7 @@ class MovieList extends StatefulWidget {
 }
 
 Future<Map> getJson() async{
-  var url = 'https://api.themoviedb.org/3/movie/550?api_key={352ad2964b88ab39889a45dfab193e02}';
+  var url = 'https://api.themoviedb.org/3/discover/movie?api_key={352ad2964b88ab39889a45dfab193e02}&language=pt-BR';
   http.Response resp = await http.get(url);
   return json.decode(resp.body);
 }
