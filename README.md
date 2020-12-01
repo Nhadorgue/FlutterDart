@@ -1,5 +1,16 @@
-# Sinefilms
-Aplicativo utilizando a API The Movie Database (ou outra que você preferir). O Aplicativo deve apresentar uma busca para que o usuário escreva o que está procurando. Depois da Busca o app apresenta os resultados e usuário poderá clicar no nome do filme e abrir a ficha do filme com todos os dados e imagem do filme.  O resultado dos filmes deve vir ordenado por ano de lançamento e depois por nome.
+# sinefilms
 
-# Créditos
-Este produto usa a API TMDb, mas não é endossado ou certificado por TMDb.
+A new Flutter application.
+
+## Getting Started
+
+This project is a starting point for a Flutter application.
+
+A few resources to get you started if this is your first Flutter project:
+
+- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
+- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+
+For help getting started with Flutter, view our
+[online documentation](https://flutter.dev/docs), which offers tutorials,
+samples, guidance on mobile development, and a full API reference.
