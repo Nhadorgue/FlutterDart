@@ -16,6 +16,7 @@ class MovieList extends StatefulWidget {
 
 class MovieListState extends State<MovieList> {
   var movies;
+  String nameMovie = "";
   Color titleColor = const Color(0xffe0270d);
 
   void getData() async {
@@ -57,29 +58,58 @@ class MovieListState extends State<MovieList> {
         ],
       ),
       body: new Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16),
         child: new Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             //set the movie's name
-            new FindMovie(movies),
+//            new FindMovie(),
+            new TextField(
+              textAlign: TextAlign.center,
+              onChanged: (text){
+                nameMovie = text;
+                //new FindMovie();
+              },
+              style: new TextStyle(
+                color: Colors.white,
+                fontSize: 26,
+              ),
+              decoration: new InputDecoration(
+                hintText: "Digite o nome do filme...",
+                hintStyle: new TextStyle(
+                  color: Colors.white.withOpacity(0.5),
+                ),
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(
+                      color: titleColor
+                  ),
+
+
+                ),
+              ),
+
+            ),
+
             new Expanded(
               child: new ListView.builder(
                   itemCount: movies == null ? 0 : movies.length,
                   itemBuilder: (context, i) {
-                    return new FlatButton(
+                    return new RaisedButton(
+
                       child: new MovieDetails(movies, i),
-                      padding: const EdgeInsets.all(0.0),
+
+
                       onPressed: () {
                         Navigator.push(context,
                             new MaterialPageRoute(builder: (context) {
                               return new MovieIndividual(movies[i]);
                             }));
                       },
-                      color: Colors.white,
+                      color: Colors.grey[900],
                     );
                   }),
-            )
+            ),
+            /**/
           ],
         ),
       ),
@@ -89,10 +119,12 @@ class MovieListState extends State<MovieList> {
 
 Future<Map> getJson() async {
   var apiKey = '352ad2964b88ab39889a45dfab193e02';
-  var url = 'http://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=pt-BR&sort_by=original_title';
+//  var url = 'http://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=pt-BR&sort_by=release_date.desc&sort_by=original_title';
+  var url = 'http://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=pt-BR';
   var response = await http.get(url);
   return json.decode(response.body);
 }
+
 
 class MovieDetails extends StatelessWidget {
   final movies;
@@ -121,6 +153,7 @@ class MovieDetails extends StatelessWidget {
                 decoration: new BoxDecoration(
                   borderRadius: new BorderRadius.circular(10.0),
                   image: new DecorationImage(
+
                       image: new NetworkImage(
                           imgURL + movies[i]['poster_path']),
                       fit: BoxFit.cover),
@@ -133,12 +166,13 @@ class MovieDetails extends StatelessWidget {
                 ),
               ),
             ),
-            //TITLE
+
             new Expanded(
                 child: new Container(
                   margin: const EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 0.0),
                   child: new Column(
                     children: [
+                      //TITLE
                       new Text(
                         movies[i]['title'],
                         style: new TextStyle(
@@ -165,7 +199,7 @@ class MovieDetails extends StatelessWidget {
         new Container(
           width: 1000.0,
           height: 2,
-          color: Colors.grey[900],
+          color: Colors.white,
           margin: const EdgeInsets.all(0.0),
 
         )
@@ -173,3 +207,5 @@ class MovieDetails extends StatelessWidget {
     );
   }
 }
+
+
